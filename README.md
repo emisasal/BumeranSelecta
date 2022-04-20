@@ -1,5 +1,4 @@
-### Proyecto Bumeran Selecta
----
+# Proyecto Bumeran Selecta
 
 Es un sitio web donde pueden publicarse búsquedas de empleados para diferentes puestos, así como también cargar reclutadores. Luego pueden asignarse esos reclutadores a las búsquedas para realizar los procesos de reclutamiento y encontrar los candidatos indicados.
 
@@ -14,6 +13,6 @@ posibilidad de calificar a un reclutador al finalizar una búsqueda,
 asignar reclutadores a búsquedas, así como obtener recomendaciones de reclutadores según calificación promedio, ubicación y otros parámetros,
 sección de reportes que cuenta con datos útiles para el Administrador de la web.
 
-Desarrollado utilizando metodología ágil SCRUM en un grupo de 6 integrantes.
+Desarrollado utilizando metodología ágil SCRUM en un grupo de 6 integrantes en el marco del Coding Bootcamp de Plataforma 5.
 
 Tecnologías usadas: Javascript, HTML, CSS, Redux, React, React Bootstrap, Sequelize, MySQL ,Express, NodeJS, React Icons, SASS, CSS modules, etc.
