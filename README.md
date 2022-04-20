@@ -13,4 +13,6 @@ posibilidad de calificar a un reclutador al finalizar una búsqueda,
 asignar reclutadores a búsquedas, así como obtener recomendaciones de reclutadores según calificación promedio, ubicación y otros parámetros,
 sección de reportes que cuenta con datos útiles para el Administrador de la web.
 
+Desarrollado utilizando metodología ágil SCRUM en un grupo de 6 integrantes.
+
 Tecnologías usadas: Javascript, HTML, CSS, Redux, React, React Bootstrap, Sequelize, MySQL ,Express, NodeJS, React Icons, SASS, CSS modules, etc.
