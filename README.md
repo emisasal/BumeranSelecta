@@ -1,4 +1,5 @@
 ### Proyecto Bumeran Selecta
+---
 
 Es un sitio web donde pueden publicarse búsquedas de empleados para diferentes puestos, así como también cargar reclutadores. Luego pueden asignarse esos reclutadores a las búsquedas para realizar los procesos de reclutamiento y encontrar los candidatos indicados.
 
