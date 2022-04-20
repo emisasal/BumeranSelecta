@@ -1,0 +1,71 @@
+.containerCarouselSearch {
+    position: absolute;
+    bottom: 1.25rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    text-align: center;
+    height: 450px;
+    font-family: "Roboto", sans-serif;
+}
+
+.containerCarousel {
+    height: 450px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+    padding-left: 10%;
+    padding-right: 15%;
+
+    .graphicBar {
+        height: 380px !important;
+        width: 100% !important;
+    }
+
+    .graphicPolar {
+        height: 380px !important;
+        width: 380px !important;
+
+    }
+
+    .graphicBarAux{
+        height: 380px !important;
+        width: auto !important;
+    }
+
+    .states {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin-bottom: 100px;
+
+        .state {
+            width: 10rem;
+            padding: 4px;
+            border-radius: 15px;
+            color:white;
+        }
+
+        div:nth-child(1) {
+            background: rgb(0, 220, 212);
+        }
+
+        div:nth-child(2) {
+            background: rgb(233, 0, 102);
+        }
+
+        div:nth-child(3) {
+            background: rgb(10, 38, 238);
+        }
+         div:nth-child(4) {
+            background: grey;
+        }
+
+    }
+}
+.marginBottom{
+    margin-bottom: 80px;
+}
+.aux{
+    height: 400px;
+    width: 800px;
+}

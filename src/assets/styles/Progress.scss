@@ -1,0 +1,25 @@
+
+.containerProgress{
+    display: flex;
+    flex-direction: column;
+    transform: scale(-1, 1);
+}
+.containerIcon{
+    display: flex;
+    font-size: 1.7rem;
+    position: static;
+    width: 130px;
+    color: #ffc107;
+    /* color: rgb(0, 220, 212) */
+    /* color: rgb(233, 0, 102) */
+   /*  color:rgb(10, 38, 238) */
+
+}
+.containerBarra{
+    position: absolute;
+    width: 130px;
+    .progressBarra{
+        height: 30px !important;
+        background-color: #e9ecef00 !important;
+    }
+}

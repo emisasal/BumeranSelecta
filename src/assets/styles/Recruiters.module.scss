@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+.container {
+  min-height: calc(100vh - 100px - 150px);
+}
+
+.tbodyContainer {
+  font-family: "Poppins", sans-serif;
+
+  td {
+    width: 30%;
+  }
+}
+
+.buttonAdd {
+  width: 10rem;
+  color: #fe0068;
+}
+
+.buttonDeleteRecruiter {
+  background-color: #fe0068 !important;
+  color: #ffffff;
+  border: none !important;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  height: 3rem;
+  border-radius: 100px 100px 100px 100px !important;
+
+  &:hover {
+    background-color: #fe0068;
+  }
+}
+
+.buttonsAddRecruiter {
+  background-color: #0a26ee !important;
+  color: #ffffff;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  height: 3rem;
+  border-radius: 100px 100px 100px 100px !important;
+
+  &:hover {
+    background-color: #0a26ee;
+  }
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: center;
+  gap: 6%;
+  padding-bottom: 3%;
+}
+
+.title {
+  padding-left: 4%;
+}
+
+.addSearchBtn {
+  background-color: #0a26ee !important;
+  color: #ffffff;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  height: 3rem;
+  border-radius: 100px 100px 100px 100px !important;
+  text-align: center;
+
+  &:hover {
+    background-color: #0a26ee;
+  }
+}
+
+.filtersContainer {
+  display: flex;
+}
+
+.form {
+  width: 26.7%;
+}
+
+.pointerTrash {
+  cursor: pointer;
+}
+
+.hoverPointer:hover {
+  background-color: #6161632e;
+}
+
+.carlAcutis {
+  z-index: 2000 !important;
+}
+
+.cursorPointer{
+  cursor: default
+}

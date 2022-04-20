@@ -1,0 +1,109 @@
+.containerSearch {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  width: 100%;
+
+  @media screen and(max-width: 1000px) {
+    justify-content: center;
+  }
+
+  .img1 {
+    @media screen and(max-width: 1000px) {
+      height: 0rem;
+      width: 0rem;
+    }
+    height: 25rem;
+    width: 25rem;
+  }
+  .img2 {
+    @media screen and(max-width: 1000px) {
+      height: 0rem;
+      width: 0rem;
+    }
+    margin-top: 8rem;
+    height: 25rem;
+    width: 30rem;
+  }
+
+  .containerForm {
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+    text-align: center;
+
+    @media screen and(max-width: 375px) {
+      margin-top: 16px;
+    }
+
+    @media screen and(max-width: 768px) {
+      width: 75%;
+    }
+  }
+  .top {
+    @media screen and(max-width: 767px) {
+      margin-top: 16px;
+    }
+  }
+  .err {
+    height: 2.8rem;
+    border: 2px solid #fe0000;
+
+    &:focus {
+      border: 2px solid #fe0000;
+      box-shadow: 0 0 0px 0 rgb(0 0 0 / 30%);
+      transition: box-shadow 500ms;
+    }
+  }
+}
+
+.imgContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonDeleteRecruiter {
+  background-color: #fe0068 !important;
+  color: #ffffff;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  height: 3rem;
+  border-radius: 100px 100px 100px 100px;
+
+  &:hover {
+    background-color: #fe0068;
+  }
+}
+
+.buttonsAddRecruiter {
+  background-color: #0a26ee !important;
+  color: #ffffff;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  height: 3rem;
+  border-radius: 100px 100px 100px 100px !important;
+
+  &:hover {
+    background-color: #0a26ee;
+  }
+}
+
+.nueva {
+  color: #00dcd4 !important;
+}
+
+.iniciada {
+  color: #ff8000 !important;
+}
+
+.presentada {
+  color: #eb0064 !important;
+}
+
+.revision {
+  color: #000df1 !important;
+}

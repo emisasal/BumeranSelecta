@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+// Estilos Menu Barra de Navegación
+
+.menu {
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  margin: 18px 14px;
+  padding: 4px;
+  color: #333333;
+  text-decoration: underline #fff;
+  text-decoration-thickness: 20%;
+  text-underline-offset: 0.2em;
+  transition: text-decoration 0.6s;
+
+  &:hover {
+    text-decoration: underline 5px #fe0068;
+    text-decoration-thickness: 20%;
+    color: #333333;
+  }
+
+  &:focus {
+    text-decoration: underline 5px #fe0068;
+    text-decoration-thickness: 20%;
+  }
+}
+
+.welcomeName {
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  margin: 0.4rem 14px;
+  padding: 4px;
+  margin-left: 0;
+  padding-left: 0;
+  color: #00ddf1;
+}
+
+// Estilos OffCanvas
+
+.sizeOffCanvas {
+  width: 21.5rem !important;
+}
+
+.offcanvasHeader {
+  margin: 0.5rem;
+  margin-left: auto;
+  button {
+    background-color: #fe0068;
+    opacity: 1;
+  }
+}
+
+.boxOffCanvas {
+  width: calc(330px - 13px);
+  padding: 0 0 30px 30px !important;
+  box-sizing: border-box;
+
+  .welcomeName {
+    font-size: 16px;
+  }
+}
+
+.linkOffCanvas {
+  font-style: normal;
+  font-variant-ligatures: normal;
+  font-variant-caps: normal;
+  font-variant-numeric: normal;
+  font-variant-east-asian: normal;
+  font-weight: 700;
+  font-stretch: normal;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: Poppins, Helvetica, Arial, Verdana, sans-serif;
+  color: #333333;
+  text-transform: none;
+  text-decoration: none;
+
+  &:hover {
+    color: #fe0068;
+  }
+
+  &:focus {
+    color: #fe0068;
+  }
+}
+
+.divider {
+  color: #333333bc;
+}

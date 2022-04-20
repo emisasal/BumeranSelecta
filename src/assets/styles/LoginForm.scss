@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+.containerFooter {
+  min-height: calc(100vh - 100px - 195px);
+}
+
+.title {
+  font-family: "Poppins", sans-serif;
+}
+
+.formLogin {
+  width: 50%;
+
+  @media screen and(max-width: 375px) {
+    width: 75%;
+  }
+
+  .inputLogin {
+    background-color: #ffffff;
+    border-color: #cacaca;
+    border-radius: 100px 100px 100px 100px;
+    font-family: "Poppins", Sans-serif;
+    font-size: 16px;
+    line-height: 2.2em;
+    color: #27273a;
+
+    &:focus {
+      background-color: #ffffff;
+      border: 1px solid #818a91;
+      box-shadow: 0 0 0px 0 rgb(0 0 0 / 30%);
+      transition: box-shadow 500ms;
+    }
+  }
+
+  .buttonLogin {
+    background-color: #fe0068;
+    color: #ffffff;
+    border: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    height: 3rem;
+    border-radius: 100px 100px 100px 100px;
+
+    &:hover {
+      background-color: #fe0068;
+    }
+  }
+  .err {
+    font-size: 16px;
+    line-height: 2.2em;
+    border: 2px solid #fe0000;
+
+    &:focus {
+      border: 2px solid #fe0000;
+      box-shadow: 0 0 0px 0 rgb(0 0 0 / 30%);
+      transition: box-shadow 500ms;
+    }
+  }
+}
+
+.forgotPass {
+  text-decoration: none;
+  padding-right: 10%;
+}
+
+.footerContainer {
+  min-height: calc(100vh - 100px - 200px);
+}

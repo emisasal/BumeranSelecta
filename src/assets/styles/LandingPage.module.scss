@@ -1,0 +1,27 @@
+.container {
+  // display: flex;
+  min-height: calc(100vh - 100px - 290px);
+  margin-top: 7%;
+}
+
+.txtContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.txt {
+  font-weight: 300;
+}
+
+.message {
+  font-weight: 700;
+}
+
+.secondContainer {
+  padding-top: 1%;
+}
+
+.picture {
+  max-width: 30%;
+}

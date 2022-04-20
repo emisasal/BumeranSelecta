@@ -1,0 +1,36 @@
+.footerBotton {
+  min-height: calc(100vh - 100px - 250px);
+}
+
+.buttonDeleteRecruiter {
+  background-color: #fe0068 !important;
+  color: #ffffff;
+  border: none !important;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  height: 3rem;
+  border-radius: 100px 100px 100px 100px !important;
+
+  &:hover {
+    background-color: #fe0068;
+  }
+}
+
+.buttonsAddRecruiter {
+  background-color: #0a26ee !important;
+  color: #ffffff;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  height: 3rem;
+  border-radius: 100px 100px 100px 100px !important;
+
+  &:hover {
+    background-color: #0a26ee;
+  }
+}
+
+
+.carlAcutis {
+  z-index: 2000 !important;
+}

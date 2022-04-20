@@ -1,0 +1,66 @@
+.inputRadio {
+  height: 0px;
+  width: 0px;
+}
+
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.4rem;
+  padding-bottom: 3%;
+}
+
+.container {
+  text-align: center;
+  padding-top: 3%;
+  font-family: "Poppins", sans-serif;
+  margin-inline: 10%;
+  min-height: calc(100vh - 100px - 150px);
+}
+
+.totalCandidates {
+  padding-top: 3%;
+  padding-bottom: 2%;
+}
+
+.popover{
+  box-shadow: 2px 2px 2px 2px red !important;
+}
+
+.confirmBtn{
+  background-color: #fe0068 !important;
+  color: #ffffff;
+  border: none !important;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  height: 3rem;
+  border-radius: 100px 100px 100px 100px !important;
+
+  &:hover {
+    background-color: #fe0068;
+  }
+}
+
+.backBtn {
+  background-color: #0a26ee !important;
+  color: #ffffff;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  height: 3rem;
+  border-radius: 100px 100px 100px 100px !important;
+
+  &:hover {
+    background-color: #0a26ee;
+  }
+}
+
+.btnContainer{
+  display: flex;
+  justify-content: center;
+  gap: 1%;
+}

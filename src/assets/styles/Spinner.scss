@@ -1,0 +1,148 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.giEtmK {
+  width: 100%;
+  height: 100%;
+  transform: translateZ(0px) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0px 0px;
+  position: relative;
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+  position: relative;
+}
+
+.giEtmK div {
+  width: 16px;
+  height: 16px;
+  background: rgb(233, 0, 102);
+  border-radius: 50%;
+  transform: translate(36px, -50%) scale(1);
+  top: 8px;
+  animation-duration: 3.33333s;
+  animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  animation-name: hxngwZ;
+  box-sizing: content-box;
+  position: absolute;
+}
+
+.loader div {
+  width: 16px;
+  height: 16px;
+  background: #e90066;
+  border-radius: 50%;
+  transform: translate(36px, -50%) scale(1);
+  animation: hxngwZ 3.3333333333333335s infinite cubic-bezier(0, 0.5, 0.5, 1);
+  box-sizing: content-box;
+  position: absolute;
+  text-indent: 999px;
+}
+
+.giEtmK div:nth-child(1) {
+  background: rgb(0, 220, 212);
+  transform: translate(68px, -50%) scale(1);
+  animation-duration: 3.33333s;
+  animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  animation-name: hxngwZ;
+}
+.loader div:nth-child(1) {
+  background: #00dcd4;
+  transform: translate(68px, -50%) scale(1);
+  animation: hHBKMd 0.8333333333333334s infinite cubic-bezier(0, 0.5, 0.5, 1);
+}
+
+.giEtmK div:nth-child(2) {
+  background: rgb(233, 0, 102);
+  animation-delay: -0.833333333s;
+}
+.loader div:nth-child(2) {
+  background: #e90066;
+  animation-delay: -0.8333333333333334s;
+}
+
+.giEtmK div:nth-child(3) {
+  background: rgb(0, 220, 212);
+  animation-delay: -1.666666666667s;
+}
+.loader div:nth-child(3) {
+  background: #00dcd4;
+  animation-delay: -1.6666666666666667s;
+}
+
+.giEtmK div:nth-child(4) {
+  background: rgb(10, 38, 238);
+  animation-delay: -2.5s;
+}
+.loader div:nth-child(4) {
+  background: #0a26ee;
+  animation-delay: -2.5s;
+}
+
+.giEtmK div:nth-child(5) {
+  background: rgb(0, 220, 212);
+  animation-delay: -3.33333s;
+}
+.loader div:nth-child(5) {
+  background: #00dcd4;
+  animation-delay: -3.3333333333333335s;
+}
+
+@keyframes hHBKMd {
+  100% {
+    transform: translate(68px, -50%) scale(0);
+  }
+}
+
+@keyframes hxngwZ {
+  0% {
+    transform: translate(0px, -50%) scale(0);
+  }
+  25% {
+    transform: translate(0px, -50%) scale(0);
+  }
+  50% {
+    transform: translate(0px, -50%) scale(1);
+  }
+  75% {
+    transform: translate(36px, -50%) scale(1);
+  }
+  100% {
+    transform: translate(68px, -50%) scale(1);
+  }
+}
+
+.position {
+  position: absolute;
+  top: 40%;
+  left: 48%;
+  background: white;
+}
+.fondo {
+  background: white;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+}

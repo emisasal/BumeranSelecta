@@ -1,0 +1,50 @@
+.containerSearchEdit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+
+  .containerForm {
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    text-align: center;
+  }
+}
+
+.containerTable {
+  width: 100vw;
+}
+
+.ancho {
+  display: flex;
+}
+.inputRadio {
+  display: block !important;
+}
+input[type="radio"] {
+  display: block !important;
+}
+
+.buttonsAddRecruiter {
+  background-color: #0a26ee !important;
+  color: #ffffff;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  height: 3rem;
+  border-radius: 100px 100px 100px 100px !important;
+
+  &:hover {
+    background-color: #0a26ee;
+  }
+}
+
+.buttonsEditSearch {
+  a {
+    text-decoration: none;
+  }
+}
