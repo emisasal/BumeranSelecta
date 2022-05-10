@@ -1,76 +1,70 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getSingleSearch,
-  editRecruiter,
-  getAssignment,
-} from "../store/searchs";
-import { useParams } from "react-router";
-import { useNavigate, Link } from "react-router-dom";
-import Row from "react-bootstrap/Row";
-import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
-import arr from "../hooks/array";
-import useInput from "../hooks/useInput";
-import "../assets/styles/SearchEdit.scss";
-import styles from "../assets/styles/Recruiters.module.scss";
-import { editNewSearch } from "../utils/alerts";
+import React, { useEffect, useState } from "react"
+import { useParams } from "react-router"
+import { useNavigate, Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { Button, Form, Row } from "react-bootstrap"
+import { getSingleSearch, editRecruiter, getAssignment } from "../store/searchs"
+import arr from "../hooks/array"
+import useInput from "../hooks/useInput"
+import { editNewSearch } from "../utils/alerts"
+import "../assets/styles/SearchEdit.scss"
+import styles from "../assets/styles/Recruiters.module.scss"
 
 const EditNewSearch = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const [validation, setValidation] = useState(true);
-  const [recruiterInfo, setRecruiterInfo] = useState({});
-  const [recruiter, setRecruiter] = useState([]);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { id } = useParams()
+  const [validation, setValidation] = useState(true)
+  const [recruiterInfo, setRecruiterInfo] = useState({})
+  const [recruiter, setRecruiter] = useState([])
 
-  const country = useInput();
-  const area_ser = useInput();
-  const position = useInput();
-  const description_ser = useInput();
-  const vacancies = useInput();
-  const lapse_search = useInput();
-  const start_date = useInput(null);
+  const country = useInput()
+  const area_ser = useInput()
+  const position = useInput()
+  const description_ser = useInput()
+  const vacancies = useInput()
+  const lapse_search = useInput()
+  const start_date = useInput(null)
 
   useEffect(() => {
-    dispatch(getSingleSearch(id)).then((data) => {
-      country.setValue(data.payload.country);
-      area_ser.setValue(data.payload.area_search);
-      position.setValue(data.payload.position);
-      description_ser.setValue(data.payload.description_search);
-      vacancies.setValue(data.payload.vacancies);
-      lapse_search.setValue(data.payload.lapse_search);
+    dispatch(getSingleSearch(id)).then(data => {
+      country.setValue(data.payload.country)
+      area_ser.setValue(data.payload.area_search)
+      position.setValue(data.payload.position)
+      description_ser.setValue(data.payload.description_search)
+      vacancies.setValue(data.payload.vacancies)
+      lapse_search.setValue(data.payload.lapse_search)
       return dispatch(
         getAssignment({
           country: data.payload.country,
           area_search: data.payload.area_search,
         })
-      ).then((data) => setRecruiter(data.payload));
-    });
-  }, []);
+      ).then(data => setRecruiter(data.payload))
+    })
+  }, [])
 
   useEffect(() => {
     dispatch(
       getAssignment({ country: country.value, area_search: area_ser.value })
-    ).then((data) => setRecruiter(data.payload));
-  }, [area_ser.value, country.value]);
+    ).then(data => setRecruiter(data.payload))
+  }, [area_ser.value, country.value])
 
-
-  const handleEdit = async (e)=> {
-    e.preventDefault();
-         await dispatch(
-        editRecruiter({
-          id: id,
-          recruiterId: recruiterInfo.id,
-          description_search: description_ser.value,
-          country: country.value,
-          area_search: area_ser.value,
-          position: position.value,
-          vacancies: parseInt(vacancies.value),
-          lapse_search: lapse_search.value,
-        }))
-        editNewSearch()
-         navigate("/searchs");
+  const handleEdit = async e => {
+    e.preventDefault()
+    await dispatch(
+      editRecruiter({
+        id: id,
+        recruiterId: recruiterInfo.id,
+        description_search: description_ser.value,
+        country: country.value,
+        area_search: area_ser.value,
+        position: position.value,
+        vacancies: parseInt(vacancies.value),
+        lapse_search: lapse_search.value,
+      })
+    )
+    editNewSearch()
+    navigate("/searchs")
   }
 
   return (
@@ -99,7 +93,7 @@ const EditNewSearch = () => {
                 <option selected disabled value="">
                   Países
                 </option>
-                {arr.country.map((i) => (
+                {arr.country.map(i => (
                   <option>{i}</option>
                 ))}
               </Form.Select>
@@ -118,7 +112,7 @@ const EditNewSearch = () => {
                 <option selected disabled value="">
                   Área
                 </option>
-                {arr.area.map((i) => (
+                {arr.area.map(i => (
                   <option>{i}</option>
                 ))}
               </Form.Select>
@@ -165,7 +159,7 @@ const EditNewSearch = () => {
                 <option selected disabled value="">
                   Vacantes
                 </option>
-                {arr.vacancies().map((i) => (
+                {arr.vacancies().map(i => (
                   <option>{i}</option>
                 ))}
               </Form.Select>
@@ -199,12 +193,10 @@ const EditNewSearch = () => {
               Editar
             </Button>
           </div>
-
-          </Form>
-
+        </Form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EditNewSearch;
+export default EditNewSearch

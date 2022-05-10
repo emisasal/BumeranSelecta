@@ -1,70 +1,66 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { getSingleSearch, editRecruiter, getAssignment } from "../store/searchs";
-import { useParams } from "react-router";
-import { useNavigate, Link } from "react-router-dom";
-import Row from "react-bootstrap/Row";
-import Form from "react-bootstrap/Form";
-import { Button, Overlay, Popover } from "react-bootstrap";
-import Progress from "../commons/Progress";
-import useInput from "../hooks/useInput";
-import "../assets/styles/SearchEdit.scss";
-import styles from "../assets/styles/StartSearch.module.scss";
-import { startSearch } from "../utils/alerts";
+import React, { useEffect, useState, useRef } from "react"
+import { useDispatch } from "react-redux"
+import { useParams } from "react-router"
+import { useNavigate, Link } from "react-router-dom"
+import { Button, Overlay, Popover, Row, Form } from "react-bootstrap"
+import { getSingleSearch, editRecruiter, getAssignment } from "../store/searchs"
+import Progress from "../commons/Progress"
+import useInput from "../hooks/useInput"
+import "../assets/styles/SearchEdit.scss"
+import styles from "../assets/styles/StartSearch.module.scss"
+import { startSearch } from "../utils/alerts"
 
 const StartSearch = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const [validation, setValidation] = useState(true);
-  const [recruiterInfo, setRecruiterInfo] = useState({});
-  const [recruiter, setRecruiter] = useState([]);
-  const iniciar = useRef();
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { id } = useParams()
+  const [validation, setValidation] = useState(true)
+  const [recruiterInfo, setRecruiterInfo] = useState({})
+  const [recruiter, setRecruiter] = useState([])
+  const iniciar = useRef()
 
-  const country = useInput();
-  const area_ser = useInput();
-  const position = useInput();
-  const description_ser = useInput();
-  const lapse_search = useInput();
-  const start_date = useInput(null);
+  const country = useInput()
+  const area_ser = useInput()
+  const position = useInput()
+  const description_ser = useInput()
+  const lapse_search = useInput()
+  const start_date = useInput(null)
 
   useEffect(() => {
-    dispatch(getSingleSearch(id)).then((data) => {
-      country.setValue(data.payload.country);
-      area_ser.setValue(data.payload.area_search);
-      position.setValue(data.payload.position);
-      lapse_search.setValue(data.payload.lapse_search);
+    dispatch(getSingleSearch(id)).then(data => {
+      country.setValue(data.payload.country)
+      area_ser.setValue(data.payload.area_search)
+      position.setValue(data.payload.position)
+      lapse_search.setValue(data.payload.lapse_search)
       return dispatch(
         getAssignment({
           country: data.payload.country,
           area_search: data.payload.area_search,
         })
-      ).then((data) => setRecruiter(data.payload));
-    });
-  }, []);
+      ).then(data => setRecruiter(data.payload))
+    })
+  }, [])
 
   useEffect(() => {
     dispatch(
       getAssignment({ country: country.value, area_search: area_ser.value })
-    ).then((data) => setRecruiter(data.payload));
-  }, [area_ser.value, country.value]);
+    ).then(data => setRecruiter(data.payload))
+  }, [area_ser.value, country.value])
 
-
-  const handleStartSearch = async (e) => {
-    e.preventDefault();
-    if (!recruiterInfo.id || !start_date.value) return setValidation(false); 
-        await dispatch(
-        editRecruiter({
-          id: id,
-          recruiterId: recruiterInfo.id,
-          state_search: "Iniciada",
-          start_date: start_date.value,
-        }),
-        startSearch()
-      );
-      navigate("/searchs");
-    
-  };
+  const handleStartSearch = async e => {
+    e.preventDefault()
+    if (!recruiterInfo.id || !start_date.value) return setValidation(false)
+    await dispatch(
+      editRecruiter({
+        id: id,
+        recruiterId: recruiterInfo.id,
+        state_search: "Iniciada",
+        start_date: start_date.value,
+      }),
+      startSearch()
+    )
+    navigate("/searchs")
+  }
 
   return (
     <div className={`containerSearchEdit ${styles.container}`}>
@@ -119,7 +115,7 @@ const StartSearch = () => {
                             />
                           </td>
                         </tr>
-                      );
+                      )
                     })}
                   </tbody>
                 </table>
@@ -190,23 +186,26 @@ const StartSearch = () => {
             </Button>
 
             <Overlay
-          show={validation ? false : true}
-          target={iniciar.current}
-          placement="top"
-          containerPadding={20}
-        >
-          <Popover id="popover-contained">
-            <Popover.Body className={styles.popover}>
-              <strong>Debe seleccionar un reclutador e indicar una fecha de inicio para continuar</strong>
-            </Popover.Body>
-          </Popover>
-        </Overlay>
+              show={validation ? false : true}
+              target={iniciar.current}
+              placement="top"
+              containerPadding={20}
+            >
+              <Popover id="popover-contained">
+                <Popover.Body className={styles.popover}>
+                  <strong>
+                    Debe seleccionar un reclutador e indicar una fecha de inicio
+                    para continuar
+                  </strong>
+                </Popover.Body>
+              </Popover>
+            </Overlay>
           </div>
           <Row />
         </Form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default StartSearch;
+export default StartSearch

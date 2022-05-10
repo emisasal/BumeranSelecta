@@ -1,60 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import useInput from "../hooks/useInput";
-import { Button, Form } from "react-bootstrap";
-import styles from "../assets/styles/EditRecruiter.module.scss";
-import { alertEditRecruiter } from "../utils/alerts";
+import { Link, useNavigate } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import useInput from "../hooks/useInput"
+import { Button, Form } from "react-bootstrap"
+import styles from "../assets/styles/EditRecruiter.module.scss"
+import { alertEditRecruiter } from "../utils/alerts"
+import { editRecruiter } from "../store/recruiters"
 
 const EditRecruiter = () => {
-  //obtener id del usuario a partir de la url
-  let currentURL = window.location.href;
-  let arrayURL = currentURL.split("/");
-  let reducedURL = [];
+  const recruiter = useSelector(state => state.recruiter.singleRecruiter)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  for (let i = 0; i < arrayURL.length; i++) {
-    if (i === arrayURL.length - 1) {
-      reducedURL.push(arrayURL[i]);
-    }
-  }
+  const name = useInput(recruiter.name)
+  const surname = useInput(recruiter.surname)
+  const country = useInput(recruiter.country)
+  const description_rec = useInput(recruiter.description_rec)
+  const area_rec = useInput(recruiter.area_rec)
+  const active_searchs = useInput(recruiter.active_searchs)
+  const status_rec = useInput(recruiter.status_rec)
 
-  let recruiterId = parseInt(reducedURL);
-
-  //axios trayendo info del recruiter
-
-  const [recruiterInfo, setRecruiterInfo] = useState();
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/recruiter/${recruiterId}`)
-      .then((res) => res.data)
-      .then((product) => {
-        setRecruiterInfo(product);
-        name.setValue(product.name);
-        surname.setValue(product.surname);
-        country.setValue(product.country);
-        description_rec.setValue(product.description_rec);
-        area_rec.setValue(product.area_rec);
-        active_searchs.setValue(product.active_searchs);
-        status_rec.setValue(product.status_rec);
-      });
-  }, []);
-
-  //envio del recruiter editado al servidor
-  const navigate = useNavigate();
-
-  const name = useInput();
-  const surname = useInput();
-  const country = useInput();
-  const description_rec = useInput();
-  const area_rec = useInput();
-  const active_searchs = useInput();
-  const status_rec = useInput();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .put(`http://localhost:3001/api/recruiter/${recruiterId}`, {
+  const handleSubmit = e => {
+    e.preventDefault()
+    dispatch(
+      editRecruiter({
+        id: recruiter.id,
         name: name.value,
         surname: surname.value,
         country: country.value,
@@ -62,13 +31,13 @@ const EditRecruiter = () => {
         area_rec: area_rec.value,
         active_searchs: active_searchs.value,
         status_rec: status_rec.value,
+        alertEditRecruiter,
+        navigate,
       })
-      .then((res) => res.data);
-    alertEditRecruiter()
-    navigate("/recruiters");
-  };
+    )
+  }
 
-  if (!recruiterInfo) return <div></div>;
+  if (!recruiter) return <div></div>
 
   return (
     <div
@@ -171,34 +140,7 @@ const EditRecruiter = () => {
               />
             </Form.Group>
           </div>
-
-          {/* <div className="col-lg-6">
-            <Form.Group
-              className="w-100 ps-lg-1 pb-3"
-              controlId="formBasicEmail"
-            >
-              <Form.Control
-                {...status_rec}
-                type="text"
-                className="inputLogin"
-                id="inputPassword4"
-                placeholder="Activo/Inactivo"
-              />
-            </Form.Group>
-          </div> */}
         </div>
-
-        {/* <div className="col-lg-12">
-          <Form.Group className="w-100 pe-lg-1 pb-3" controlId="formBasicEmail">
-            <Form.Control
-              {...active_searchs}
-              type="text"
-              className="inputLogin"
-              id="inputAddress"
-              placeholder="Búsquedas activas separadas por comas"
-            />
-          </Form.Group>
-        </div> */}
 
         <div className="row">
           <div className="col-6 text-end">
@@ -219,7 +161,7 @@ const EditRecruiter = () => {
         </div>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default EditRecruiter;
+export default EditRecruiter

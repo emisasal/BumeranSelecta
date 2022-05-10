@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { Button, Form, Dropdown, Modal } from "react-bootstrap"
-import useInput from "../hooks/useInput"
 import { useSelector, useDispatch } from "react-redux"
+import { Button, Form, Dropdown, Modal } from "react-bootstrap"
 import { deleteSearch, getSearchsList } from "../store/searchs"
 import { pageChange } from "../store/page"
+import useInput from "../hooks/useInput"
 import styles from "../assets/styles/Recruiters.module.scss"
 import { alertDeleteSearch } from "../utils/alerts"
 import PaginationComp from "../commons/Pagination"
+import { nueva, iniciada, cerrada } from "../utils/iconsColors"
 
 const Search = () => {
   const page = useSelector(state => state.page)
@@ -15,7 +16,6 @@ const Search = () => {
   const end_date = useInput()
   const [estado, setEstado] = useState("Todas")
   const [country, setCountry] = useState("Todos")
-
   //Modal
   const [show, setShow] = useState(false)
   const [selected, setSelected] = useState({})
@@ -26,11 +26,9 @@ const Search = () => {
     setShow(true)
   }
 
-  //dispatch y selector
   const dispatch = useDispatch()
   const search = useSelector(state => state.search.data)
 
-  //carga de todas las búsquedas
   useEffect(() => {
     dispatch(
       getSearchsList({
@@ -43,7 +41,6 @@ const Search = () => {
     )
   }, [page, estado, country, start_date.value, end_date.value])
 
-  //eliminar busqueda
   const handleDelete = (e, searchId) => {
     e.preventDefault()
     alertDeleteSearch({
@@ -60,7 +57,6 @@ const Search = () => {
     })
   }
 
-  //traer todas las búsquedas al cargar esta sección
   const handleEstado = est => {
     dispatch(pageChange({ page: 1 }))
     setEstado(est)
@@ -72,24 +68,18 @@ const Search = () => {
     setCountry(cntry)
   }
 
-  //iconos de estado de búsqueda
   const handleIcons = state => {
-    if (state === "Nueva")
-      return "M11.5 14.5996V9.4006L14.309 11.9996L11.5 14.5996ZM12.339 7.4526C11.841 6.9906 11.114 6.8706 10.488 7.1456C9.878 7.4116 9.5 7.9806 9.5 8.6296V15.3706C9.5 16.0196 9.878 16.5886 10.488 16.8546C10.711 16.9526 10.948 16.9996 11.181 16.9996C11.604 16.9996 12.019 16.8446 12.338 16.5486L15.98 13.1786C16.311 12.8726 16.5 12.4436 16.5 11.9996C16.5 11.5566 16.311 11.1266 15.98 10.8216L12.339 7.4526ZM12 20C7.589 20 4 16.411 4 12C4 7.589 7.589 4 12 4C16.411 4 20 7.589 20 12C20 16.411 16.411 20 12 20ZM12 2C6.486 2 2 6.486 2 12C2 17.514 6.486 22 12 22C17.514 22 22 17.514 22 12C22 6.486 17.514 2 12 2Z"
-    if (state === "Iniciada")
-      return "M12 16C11.448 16 11 15.552 11 15C11 14.448 11.448 14 12 14C12.552 14 13 14.448 13 15C13 15.552 12.552 16 12 16ZM12 12C10.346 12 9 13.346 9 15C9 16.654 10.346 18 12 18C13.654 18 15 16.654 15 15C15 13.346 13.654 12 12 12ZM18 19C18 19.552 17.552 20 17 20H7C6.448 20 6 19.552 6 19V11C6 10.448 6.448 10 7 10H8H10H14H16H17C17.552 10 18 10.448 18 11V19ZM10 6.111C10 4.947 10.897 4 12 4C13.103 4 14 4.947 14 6.111V8H10V6.111ZM17 8H16V6.111C16 3.845 14.206 2 12 2C9.794 2 8 3.845 8 6.111V8H7C5.346 8 4 9.346 4 11V19C4 20.654 5.346 22 7 22H17C18.654 22 20 20.654 20 19V11C20 9.346 18.654 8 17 8Z"
-    if (state === "Cerrada")
-      return "M12 16C11.448 16 11 15.552 11 15C11 14.448 11.448 14 12 14C12.552 14 13 14.448 13 15C13 15.552 12.552 16 12 16ZM12 12C10.346 12 9 13.346 9 15C9 16.654 10.346 18 12 18C13.654 18 15 16.654 15 15C15 13.346 13.654 12 12 12ZM18 19C18 19.552 17.552 20 17 20H7C6.448 20 6 19.552 6 19V11C6 10.448 6.448 10 7 10H8H10H14H16H17C17.552 10 18 10.448 18 11V19ZM10 6.111C10 4.947 10.897 4 12 4C13.103 4 14 4.947 14 6.111V8H10V6.111ZM17 8H16V6.111C16 3.845 14.206 2 12 2C9.794 2 8 3.845 8 6.111V8H7C5.346 8 4 9.346 4 11V19C4 20.654 5.346 22 7 22H17C18.654 22 20 20.654 20 19V11C20 9.346 18.654 8 17 8Z"
+    if (state === "Nueva") return nueva
+    if (state === "Iniciada") return iniciada
+    if (state === "Cerrada") return cerrada
   }
 
-  //links según estado
   const handleLink = (state, searchid) => {
     if (state === "Nueva") return `/startSearch/${searchid}`
     if (state === "Iniciada") return `/rating/${searchid}`
     if (state === "Cerrada") return ""
   }
 
-  //colores de icono según estado
   const handleColors = state => {
     if (state === "Nueva") return "#CA3BD8"
     if (state === "Iniciada") return "#219879"
@@ -108,11 +98,11 @@ const Search = () => {
     if (state === "Cerrada") return ""
   }
 
-  const handleStartDate = (start_date) => {
+  const handleStartDate = start_date => {
     dispatch(pageChange({ page: 1 }))
   }
 
-  const handleEndDate = (end_date) => {
+  const handleEndDate = end_date => {
     dispatch(pageChange({ page: 1 }))
   }
 
@@ -263,7 +253,7 @@ const Search = () => {
                   className={"inputLogin rounded-pill"}
                   {...start_date}
                   type="date"
-                  onClick={()=> handleStartDate()}
+                  onClick={() => handleStartDate()}
                 />
               </Form.Group>
               <div className="col-3 mt-2 ps-5 col-md-5 text-md-end px-md-0 text-center pe-lg-1 col-lg-1 title">
@@ -278,7 +268,7 @@ const Search = () => {
                   className={"inputLogin rounded-pill"}
                   {...end_date}
                   type="date"
-                  onClick={()=> handleEndDate()}
+                  onClick={() => handleEndDate()}
                 />
               </Form.Group>
             </div>
@@ -489,18 +479,30 @@ const Search = () => {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body className="title ps-5 py-5">
-                <div className="pb-3"><strong>Posición:</strong> {selected.position}</div>
-                <div className="pb-3"><strong>País:</strong> {selected.country}</div>
-                <div className="pb-3"><strong>Área:</strong> {selected.area_search}</div>
                 <div className="pb-3">
-                <strong>Descripción:</strong> {selected.description_search}
+                  <strong>Posición:</strong> {selected.position}
                 </div>
-                <div className="pb-3"><strong>Vacantes:</strong> {selected.vacancies}</div>
                 <div className="pb-3">
-                <strong>Fecha de Inicio:</strong> {selected.start_date}
+                  <strong>País:</strong> {selected.country}
                 </div>
-                <div className="pb-3"><strong>Fecha de Cierre:</strong> {selected.end_date}</div>
-                <div className="pb-3"><strong>Estado:</strong> {selected.state_search}</div>
+                <div className="pb-3">
+                  <strong>Área:</strong> {selected.area_search}
+                </div>
+                <div className="pb-3">
+                  <strong>Descripción:</strong> {selected.description_search}
+                </div>
+                <div className="pb-3">
+                  <strong>Vacantes:</strong> {selected.vacancies}
+                </div>
+                <div className="pb-3">
+                  <strong>Fecha de Inicio:</strong> {selected.start_date}
+                </div>
+                <div className="pb-3">
+                  <strong>Fecha de Cierre:</strong> {selected.end_date}
+                </div>
+                <div className="pb-3">
+                  <strong>Estado:</strong> {selected.state_search}
+                </div>
               </Modal.Body>
             </Modal>
           }

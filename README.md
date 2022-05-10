@@ -15,4 +15,17 @@ sección de reportes que cuenta con datos útiles para el Administrador de la we
 
 Desarrollado utilizando metodología ágil SCRUM en un grupo de 6 integrantes en el marco del Coding Bootcamp de Plataforma 5.
 
-Tecnologías usadas: Javascript, HTML, CSS, Redux, React, React Bootstrap, Sequelize, MySQL ,Express, NodeJS, React Icons, SASS, CSS modules, etc.
+#### Tecnologías usadas: 
+
+
+- ReactJS
+- React Bootstrap
+- React Icons
+- SASS
+- CSS modules
+- Redux
+- Redux Persist
+- Sequelize
+- MySQL
+- Express
+- NodeJS

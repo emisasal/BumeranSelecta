@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "../assets/styles/LandingPage.module.scss";
+import React from "react"
+import styles from "../assets/styles/LandingPage.module.scss"
 
 const LandingPage = () => {
   return (
@@ -37,7 +37,7 @@ const LandingPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LandingPage;
+export default LandingPage

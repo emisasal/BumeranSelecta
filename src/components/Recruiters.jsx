@@ -1,45 +1,50 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { Button, Modal } from "react-bootstrap";
-import { getAllRecruiters, deleteRecruiter } from "../store/recruiters";
-import styles from "../assets/styles/Recruiters.module.scss";
-import Progress from "../commons/Progress";
-import { alertDeleteRecruiter } from "../utils/alerts";
-import PaginationComp from "../commons/Pagination";
+import React, { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { Button, Modal } from "react-bootstrap"
+import { getAllRecruiters, deleteRecruiter, getSingleRecruiter } from "../store/recruiters"
+import styles from "../assets/styles/Recruiters.module.scss"
+import Progress from "../commons/Progress"
+import { alertDeleteRecruiter } from "../utils/alerts"
+import PaginationComp from "../commons/Pagination"
 import { pageChange } from "../store/page"
 
 const Recruiters = () => {
-  const dispatch = useDispatch();
-  const page = useSelector((state) => state.page);
-  const recruiter = useSelector((state) => state.recruiter.data);
+  const dispatch = useDispatch()
+  const page = useSelector(state => state.page)
+  const recruiter = useSelector(state => state.recruiter.data)
+  const navigate = useNavigate()
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const [selected, setSelected] = useState({})
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const [selected, setSelected] = useState({});
+  useEffect(() => {
+    dispatch(getAllRecruiters({ page: page }))
+  }, [page])
 
-  const handleShow = (recruiter) => {
-    setSelected(recruiter);
-    setShow(true);
-  };
+  const handleShow = recruiter => {
+    setSelected(recruiter)
+    setShow(true)
+  }
 
   const handleDelete = (e, userId) => {
-    e.preventDefault();
+    e.preventDefault()
     alertDeleteRecruiter({
       dispatch,
       deleteRecruiter,
       userId,
       getAllRecruiters,
       page: page,
-      pageChange
-    });
-  };
+      pageChange,
+    })
+  }
 
-  useEffect(() => {
-    dispatch(getAllRecruiters({ page: page }));
-  }, [page]);
+  const handleEdit = (id) => {
+    dispatch(getSingleRecruiter(id))
+    .then(()=>navigate(`/recruiter/${id}`))
+  }
 
-  if (!recruiter.filas) return <h1 className={styles.container}></h1>;
+  if (!recruiter.filas) return <h1 className={styles.container}></h1>
 
   return (
     <>
@@ -113,7 +118,7 @@ const Recruiters = () => {
                   <div className="row justify-content-end">
                     <div className="className col-3 col-lg-4">
                       <i
-                        title="Ver detalles de este reclutador"
+                        title="Ver detalles de Reclutador"
                         className={styles.pointerTrash}
                         onClick={() => handleShow(recruiter)}
                       >
@@ -133,9 +138,9 @@ const Recruiters = () => {
                         </svg>
                       </i>
                     </div>
+
                     <div className="className col-3 col-lg-4">
-                      <Link to={`/recruiter/${recruiter.id}`}>
-                        <i title="Gestionar reclutador">
+                        <i title="Gestionar Reclutador" className={styles.pointerTrash} onClick={()=> handleEdit(recruiter.id)}>
                           <svg
                             width="24"
                             height="24"
@@ -151,14 +156,13 @@ const Recruiters = () => {
                             />
                           </svg>
                         </i>
-                      </Link>
                     </div>
 
                     <div className="col-3 col-lg-4">
                       <i
-                        onClick={(e) => handleDelete(e, recruiter.id)}
+                        onClick={e => handleDelete(e, recruiter.id)}
                         className={styles.pointerTrash}
-                        title="Eliminar reclutador"
+                        title="Eliminar Reclutador"
                       >
                         <svg
                           width="24"
@@ -179,7 +183,7 @@ const Recruiters = () => {
                   </div>
                 </div>
               </div>
-            );
+            )
           })}
           {
             <Modal show={show} size="lg" onHide={handleClose}>
@@ -190,18 +194,23 @@ const Recruiters = () => {
               </Modal.Header>
               <Modal.Body className="ps-5 py-4">
                 <div className="pb-3">
-                  <strong>Nombre:</strong> {`${selected.name} ${selected.surname}`}
-                </div>
-                <div className="pb-3"><strong>País:</strong> {selected.country}</div>
-                <div className="pb-3"><strong>Área:</strong> {selected.area_rec}</div>
-                <div className="pb-3">
-                <strong>Búsquedas activas:</strong> {selected.active_searchs}
+                  <strong>Nombre:</strong>{" "}
+                  {`${selected.name} ${selected.surname}`}
                 </div>
                 <div className="pb-3">
-                <strong>Comentarios:</strong> {selected.description_rec}
+                  <strong>País:</strong> {selected.country}
                 </div>
                 <div className="pb-3">
-                <strong>Calificación Promedio:</strong> {selected.rating}
+                  <strong>Área:</strong> {selected.area_rec}
+                </div>
+                <div className="pb-3">
+                  <strong>Búsquedas activas:</strong> {selected.active_searchs}
+                </div>
+                <div className="pb-3">
+                  <strong>Comentarios:</strong> {selected.description_rec}
+                </div>
+                <div className="pb-3">
+                  <strong>Calificación Promedio:</strong> {selected.rating}
                 </div>
               </Modal.Body>
             </Modal>
@@ -210,7 +219,7 @@ const Recruiters = () => {
       </div>
       <PaginationComp pagesTotal={recruiter.totalPages} />
     </>
-  );
-};
+  )
+}
 
-export default Recruiters;
+export default Recruiters

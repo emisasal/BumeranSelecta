@@ -1,11 +1,11 @@
-import { useSelector } from "react-redux";
-import React from "react";
-import Spinner from "react-bootstrap/Spinner";
-import "../assets/styles/Spinner.scss";
+import { useSelector } from "react-redux"
+import React from "react"
+import Spinner from "react-bootstrap/Spinner"
+import "../assets/styles/Spinner.scss"
 
 const SpinnerComp = () => {
-  const user = useSelector((state) => state.user.loading);
-  const recruiter = useSelector((state) => state.recruiter.loading);
+  const user = useSelector(state => state.user.loading)
+  const recruiter = useSelector(state => state.recruiter.loading)
 
   return (
     <>
@@ -23,7 +23,7 @@ const SpinnerComp = () => {
         </div>
       ) : null}
     </>
-  );
-};
+  )
+}
 
-export default SpinnerComp;
+export default SpinnerComp

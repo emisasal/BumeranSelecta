@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styles from "../assets/styles/NotFound.module.scss";
+import React from "react"
+import { Link } from "react-router-dom"
+import styles from "../assets/styles/NotFound.module.scss"
 
 const NotFound = () => {
   return (
@@ -16,7 +16,7 @@ const NotFound = () => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

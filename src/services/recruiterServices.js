@@ -4,7 +4,8 @@ import { alertNewRecruiter, alertExistRecruiter } from "../utils/alerts"
 export const allRecruitersServices = async ({ page }) => {
   try {
     const allRecruiters = await axios.get(
-      `http://localhost:3001/api/recruiter/page/${page}`)
+      `http://localhost:3001/api/recruiter/page/${page}`
+    )
     return allRecruiters.data
   } catch (error) {
     throw error
@@ -29,7 +30,10 @@ export const editRecruiterServices = async ({
   country,
   description_rec,
   area_rec,
-  rating,
+  active_searchs,
+  status_rec,
+  alertEditRecruiter,
+  navigate
 }) => {
   try {
     const editRecruiter = await axios.put(
@@ -40,9 +44,12 @@ export const editRecruiterServices = async ({
         country: country,
         description_rec: description_rec,
         area_rec: area_rec,
-        rating: rating,
+        active_searchs: active_searchs,
+        status_rec: status_rec,
       }
     )
+    alertEditRecruiter()
+    navigate("/recruiters")
     return editRecruiter.data
   } catch (error) {
     throw error

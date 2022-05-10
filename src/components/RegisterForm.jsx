@@ -1,25 +1,24 @@
-import React from "react";
-import { Form, Button } from "react-bootstrap";
-import useInput from "../hooks/useInput";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { sendRegisterRequest } from "../store/user";
-import { alertNewUser } from "../utils/alerts";
-import "../assets/styles/RegisterForm.scss";
+import React from "react"
+import { Form, Button } from "react-bootstrap"
+import useInput from "../hooks/useInput"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { sendRegisterRequest } from "../store/user"
+import { alertNewUser } from "../utils/alerts"
+import "../assets/styles/RegisterForm.scss"
 
 const RegisterForm = () => {
-  const firstName = useInput();
-  const surname = useInput();
-  const age = useInput();
-  const country = useInput();
-  const email = useInput();
-  const password = useInput();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const firstName = useInput()
+  const surname = useInput()
+  const age = useInput()
+  const country = useInput()
+  const email = useInput()
+  const password = useInput()
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async e => {
+    e.preventDefault()
     await dispatch(
       sendRegisterRequest({
         firstName: firstName.value,
@@ -28,11 +27,11 @@ const RegisterForm = () => {
         country: country.value,
         email: email.value,
         password: password.value,
+        alertNewUser,
+        navigate
       })
-    );
-    alertNewUser();
-    navigate("/");
-  };
+    )
+  }
 
   return (
     <div className="container d-flex flex-column align-items-center footerContainer">
@@ -143,7 +142,7 @@ const RegisterForm = () => {
         </div>
       </Form>
     </div>
-  );
-};
+  )
+}
 
-export default RegisterForm;
+export default RegisterForm
