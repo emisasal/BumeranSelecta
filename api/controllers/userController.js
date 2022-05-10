@@ -63,4 +63,3 @@ exports.delete = async (req, res) => {
     console.log("ERROR: ", error)
   }
 }
-

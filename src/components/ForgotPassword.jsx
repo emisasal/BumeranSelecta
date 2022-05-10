@@ -1,41 +1,41 @@
-import React from "react";
-import { Form, Button } from "react-bootstrap";
-import useInput from "../hooks/useInput";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import "../assets/styles/LoginForm.scss";
-
+import React from "react"
+import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { Form, Button } from "react-bootstrap"
+import useInput from "../hooks/useInput"
+import "../assets/styles/LoginForm.scss"
 import {
   getUserRequest,
   sendRegisterRequest,
   sendLogoutRequest,
   deleteUserRequest,
-} from "../store/user";
+} from "../store/user"
+import { alertNewPassword } from "../utils/alerts"
 
 const ForgotPassword = () => {
-  const user = useSelector((state) => state.user.passChange);
-  const email = useInput();
-  const password = useInput();
+  const user = useSelector(state => state.user.passChange)
+  const email = useInput()
+  const password = useInput()
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const handleEmailSubmit = (e) => {
-    e.preventDefault();
-    dispatch(getUserRequest({ email, navigate }));
-  };
+  const handleEmailSubmit = e => {
+    e.preventDefault()
+    dispatch(getUserRequest({ email, navigate }))
+  }
 
-  const handlePassSubmit = async (e) => {
-    e.preventDefault();
-    const firstName = user.firstName;
-    const surname = user.surname;
-    const age = String(user.age);
-    const country = user.country;
-    const email = user.email;
-    const passW = password.value;
-    const id = user.id;
-    await dispatch(sendLogoutRequest());
-    await dispatch(deleteUserRequest({ id: id }));
+  const handlePassSubmit = async e => {
+    e.preventDefault()
+    const firstName = user.firstName
+    const surname = user.surname
+    const age = String(user.age)
+    const country = user.country
+    const email = user.email
+    const passW = password.value
+    const id = user.id
+    await dispatch(sendLogoutRequest())
+    await dispatch(deleteUserRequest({ id: id }))
     await dispatch(
       sendRegisterRequest({
         firstName: firstName,
@@ -44,20 +44,21 @@ const ForgotPassword = () => {
         country: country,
         email: email,
         password: passW,
+        alertNewPassword,
+        navigate,
       })
-    );
-    navigate("/");
-  };
+    )
+  }
 
   return (
     <>
       <div className="d-flex justify-content-center container-fluid footerContainer">
         <div className="col-lg-3">
-        <img
-          className="pt-5 ms-1 pe-5 d-none d-lg-block"
-          src="https://www.bumeran.com.ar/selecta/wp-content/uploads/2021/06/contactos.png"
-          alt=""
-        />
+          <img
+            className="pt-5 ms-1 pe-5 d-none d-lg-block"
+            src="https://www.bumeran.com.ar/selecta/wp-content/uploads/2021/06/contactos.png"
+            alt=""
+          />
         </div>
         {!user.id ? (
           <Form
@@ -108,7 +109,7 @@ const ForgotPassword = () => {
         )}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ForgotPassword;
+export default ForgotPassword

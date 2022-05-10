@@ -1,29 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
-import useInput from "../hooks/useInput";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { sendLoginRequest } from "../store/user";
-import "../assets/styles/LoginForm.scss";
+import React from "react"
+import { Link, useNavigate } from "react-router-dom"
+import useInput from "../hooks/useInput"
+import { useDispatch } from "react-redux"
+import { Form, Button } from "react-bootstrap"
+import { sendLoginRequest } from "../store/user"
+import "../assets/styles/LoginForm.scss"
 
 const LoginForm = () => {
-  const email = useInput();
-  const password = useInput();
+  const email = useInput()
+  const password = useInput()
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async e => {
+    e.preventDefault()
     await dispatch(
       sendLoginRequest({
         email: email.value,
         password: password.value,
+        navigate,
       })
-    );
-    navigate("/");
-  };
+    )
+  }
 
   return (
     <div className="d-flex justify-content-center mt-5 container-fluid containerFooter">
@@ -76,7 +75,7 @@ const LoginForm = () => {
         </Form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

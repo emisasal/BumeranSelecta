@@ -116,13 +116,9 @@ exports.editSearch = (req, res) => {
     if (recruiterId) {
       let recruiterOld
       Searchs.findByPk(id).then(data => {
-        console.log("este es el recruiterOld", recruiterOld)
         recruiterOld = data.dataValues.recruiterId
 
         if (recruiterId != recruiterOld && recruiterOld != null) {
-          // actualizacion del reclutador por otro
-          console.log("entro al if", recruiterId)
-
           Recruiters.update(
             { active_searchs: Sequelize.literal("active_searchs - 1") },
             {
@@ -153,11 +149,9 @@ exports.editSearch = (req, res) => {
               where: { id: recruiterId },
             }
           )
-
           res.sendStatus(200)
         } else {
           // se vincula por primera vez un reclutador a esa busqueda
-          console.log("entro al else")
           Searchs.update(
             {
               description_search,
@@ -184,11 +178,8 @@ exports.editSearch = (req, res) => {
           ).then(data => res.status(201).send(data))
         }
       })
-      console.log("este es el reclutador anterior:", recruiterOld)
-      console.log("este es ele reclutador nuevo", recruiterId)
     } else {
       // actualización de datos sin el reclutador id
-      console.log("no hay recruiter id")
       Searchs.update(req.body, {
         where: { id },
         returning: true,
@@ -208,7 +199,6 @@ exports.editSearch = (req, res) => {
 
 exports.assignment = (req, res) => {
   const { country, area_search } = req.body
-  console.log("--->", req.body)
   try {
     Recruiters.findAll({
       where: {
@@ -262,7 +252,6 @@ exports.unassign = async (req, res) => {
   try {
     Searchs.findByPk(id).then(data => {
       let idRecruiter = data.dataValues.recruiterId
-
       Searchs.update(
         {
           recruiterId: null,

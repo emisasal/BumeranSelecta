@@ -4,7 +4,6 @@ const { Recruiters, Users, Searchs } = require('../models')
 Recruiters.hasMany(Searchs);
 Searchs.belongsTo(Recruiters);
 
-
 module.exports = {
     Users,
     Recruiters,

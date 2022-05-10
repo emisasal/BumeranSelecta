@@ -1,35 +1,29 @@
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Toast from "react-bootstrap/Toast";
-import { useDispatch } from "react-redux";
-import { addSearch } from "../store/searchs";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import bumeranArriba from "../assets/img/bumeranArriba.png";
-import bumeranAbajo from "../assets/img/bumeranAbajo.png";
-
-import useInput from "../hooks/useInput";
-import "../assets/styles/Search.scss";
-import arr from "../hooks/array";
-import { pageChange } from "../store/page";
+import React, { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { Button, Form, Row, Col, Toast } from "react-bootstrap"
+import { addSearch } from "../store/searchs"
+import bumeranArriba from "../assets/img/bumeranArriba.png"
+import bumeranAbajo from "../assets/img/bumeranAbajo.png"
+import useInput from "../hooks/useInput"
+import "../assets/styles/Search.scss"
+import arr from "../hooks/array"
+import { pageChange } from "../store/page"
 
 const AddSearchs = () => {
-  const [show, setShow] = useState(false);
-  const [validation, setValidation] = useState(true);
-  const country = useInput();
-  const area_ser = useInput();
-  const position = useInput();
-  const description_ser = useInput();
-  const vacancies = useInput();
-  const lapse_search = useInput();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [show, setShow] = useState(false)
+  const [validation, setValidation] = useState(true)
+  const country = useInput()
+  const area_ser = useInput()
+  const position = useInput()
+  const description_ser = useInput()
+  const vacancies = useInput()
+  const lapse_search = useInput()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async e => {
+    e.preventDefault()
     let data = [
       country.value,
       area_ser.value,
@@ -37,14 +31,14 @@ const AddSearchs = () => {
       description_ser.value,
       vacancies.value,
       lapse_search.value,
-    ];
-    let state = false;
-    data.forEach((element) => {
+    ]
+    let state = false
+    data.forEach(element => {
       if (element == "") {
-        state = true;
+        state = true
       }
-    });
-    if (state) setValidation(false);
+    })
+    if (state) setValidation(false)
     else {
       await dispatch(
         addSearch({
@@ -55,11 +49,11 @@ const AddSearchs = () => {
           vacancies: parseInt(vacancies.value),
           lapse_search: lapse_search.value,
         })
-      );
+      )
       dispatch(pageChange({ page: 1 }))
-      navigate("/searchs");
+      navigate("/searchs")
     }
-  };
+  }
 
   return (
     <>
@@ -86,7 +80,7 @@ const AddSearchs = () => {
                   <option selected disabled value="">
                     Países
                   </option>
-                  {arr.country.map((i) => (
+                  {arr.country.map(i => (
                     <option>{i}</option>
                   ))}
                 </Form.Select>
@@ -104,7 +98,7 @@ const AddSearchs = () => {
                   <option selected disabled value="">
                     Área
                   </option>
-                  {arr.area.map((i) => (
+                  {arr.area.map(i => (
                     <option>{i}</option>
                   ))}
                 </Form.Select>
@@ -146,7 +140,9 @@ const AddSearchs = () => {
                   {...lapse_search}
                   type="date"
                 />
-                <div className="text-muted">Ingrese el plazo estimado de búsqueda</div>
+                <div className="text-muted">
+                  Ingrese el plazo estimado de búsqueda
+                </div>
               </Form.Group>
 
               <Form.Group className="col-md-6 top" controlId="formGridState">
@@ -161,7 +157,7 @@ const AddSearchs = () => {
                   <option selected disabled value="">
                     Vacantes
                   </option>
-                  {arr.vacancies().map((i) => (
+                  {arr.vacancies().map(i => (
                     <option>{i}</option>
                   ))}
                 </Form.Select>
@@ -215,7 +211,7 @@ const AddSearchs = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default AddSearchs;
+export default AddSearchs

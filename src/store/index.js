@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit"
 import {
   persistReducer,
   FLUSH,
@@ -7,10 +7,9 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import logger from "redux-logger";
-
+} from "redux-persist"
+import storage from "redux-persist/lib/storage"
+import logger from "redux-logger"
 
 import userSlice from "./user"
 import recruiterSlice from "./recruiters"
@@ -22,12 +21,12 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
-};
+}
 
-const persistedReducer = persistReducer(persistConfig, userSlice);
+const persistedReducer = persistReducer(persistConfig, userSlice)
 
 const store = configureStore({
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
@@ -40,6 +39,6 @@ const store = configureStore({
     page: pageReducer,
     reports: reportsSlice,
   },
-});
+})
 
-export default store;
+export default store

@@ -61,7 +61,7 @@ export const editSearchServices = async ({
   lapse_search,
   recruiterId,
   start_date,
-  state_search
+  state_search,
 }) => {
   try {
     const editSearch = await axios.put(
@@ -84,15 +84,22 @@ export const editSearchServices = async ({
   }
 }
 
-export const getSearchsListService = async ({page, state, country, filter_start, filter_end}) => {
+export const getSearchsListService = async ({
+  page,
+  state,
+  country,
+  filter_start,
+  filter_end,
+}) => {
   try {
     const pendingSearchs = await axios.post(
-      `http://localhost:3001/api/search/list`, {
+      `http://localhost:3001/api/search/list`,
+      {
         page: page,
         state: state,
         country: country,
         filter_start: filter_start,
-        filter_end: filter_end
+        filter_end: filter_end,
       }
     )
     return pendingSearchs.data
@@ -101,12 +108,10 @@ export const getSearchsListService = async ({page, state, country, filter_start,
   }
 }
 
-export const assignmentSearchsServices = async ({
-  country,
-  area_search,
-}) => {
+export const assignmentSearchsServices = async ({ country, area_search }) => {
   try {
-    const assignment = await axios.post("http://localhost:3001/api/search/assignment",
+    const assignment = await axios.post(
+      "http://localhost:3001/api/search/assignment",
       {
         country: country,
         area_search: area_search,
@@ -126,7 +131,8 @@ export const endSearchSearchServices = async ({
   commentary,
 }) => {
   try {
-    const endSearch = await axios.put(`http://localhost:3001/api/search/end-search/${id}`,
+    const endSearch = await axios.put(
+      `http://localhost:3001/api/search/end-search/${id}`,
       {
         id: id,
         end_date: end_date,
@@ -141,7 +147,7 @@ export const endSearchSearchServices = async ({
   }
 }
 
-export const deleteRecruiterSearchServices = async (id) => {
+export const deleteRecruiterSearchServices = async id => {
   try {
     axios.get(`http://localhost:3001/api/search/delete-rec/${id}`)
   } catch (error) {

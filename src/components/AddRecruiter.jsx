@@ -1,40 +1,40 @@
-import React, { useState } from "react";
-import useInput from "../hooks/useInput";
-import { Link, useNavigate } from "react-router-dom";
-import { Button, Form } from "react-bootstrap";
-import styles from "../assets/styles/AddRecruiter.module.scss";
-import arr from "../hooks/array";
-import { addNewRecruiter } from "../store/recruiters";
-import { useDispatch } from "react-redux";
-import { pageChange } from "../store/page";
+import React, { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { Button, Form } from "react-bootstrap"
+import useInput from "../hooks/useInput"
+import arr from "../hooks/array"
+import { addNewRecruiter } from "../store/recruiters"
+import { pageChange } from "../store/page"
+import styles from "../assets/styles/AddRecruiter.module.scss"
 
 const AddRecruiter = () => {
-  const name = useInput();
-  const surname = useInput();
-  const country = useInput();
-  const description_rec = useInput();
-  const area_rec = useInput();
-  const [validation, setValidation] = useState(true);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const name = useInput()
+  const surname = useInput()
+  const country = useInput()
+  const description_rec = useInput()
+  const area_rec = useInput()
+  const [validation, setValidation] = useState(true)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault()
     let data = [
       name.value,
       surname.value,
       country.value,
       description_rec.value,
       area_rec.value,
-    ];
-    let state = false;
-    data.forEach((element) => {
+    ]
+    let state = false
+    data.forEach(element => {
       if (element == "") {
-        state = true;
+        state = true
       }
-    });
+    })
     if (state) {
-      setValidation(false);
+      setValidation(false)
     } else {
       dispatch(
         addNewRecruiter({
@@ -47,11 +47,11 @@ const AddRecruiter = () => {
           pageChange,
           navigate,
         })
-      );
+      )
     }
-  };
+  }
 
-  if (!name) return <div></div>;
+  if (!name) return <div></div>
 
   return (
     <div
@@ -120,7 +120,7 @@ const AddRecruiter = () => {
                 <option selected disabled value="">
                   Países
                 </option>
-                {arr.country.map((i) => (
+                {arr.country.map(i => (
                   <option>{i}</option>
                 ))}
               </Form.Select>
@@ -142,7 +142,7 @@ const AddRecruiter = () => {
                 <option selected disabled value="">
                   Area
                 </option>
-                {arr.area.map((i) => (
+                {arr.area.map(i => (
                   <option>{i}</option>
                 ))}
               </Form.Select>
@@ -187,7 +187,7 @@ const AddRecruiter = () => {
         </div>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default AddRecruiter;
+export default AddRecruiter

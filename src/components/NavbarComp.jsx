@@ -5,26 +5,25 @@ import {
   NavItem,
   Offcanvas,
   NavDropdown,
-} from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { sendLogoutRequest } from "../store/user";
-import styles from "../assets/styles/NavbarComp.module.scss";
+} from "react-bootstrap"
+import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { sendLogoutRequest } from "../store/user"
+import styles from "../assets/styles/NavbarComp.module.scss"
 
-import { pageChange } from "../store/page";
+import { pageChange } from "../store/page"
 
 const NavbarComp = () => {
-  const dispatch = useDispatch();
-
-  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
 
   const handleLogOut = () => {
-    dispatch(sendLogoutRequest());
-  };
-  
-const handlePageReset = () => {
-  dispatch(pageChange({ page: 1 }))
-}
+    dispatch(sendLogoutRequest())
+  }
+
+  const handlePageReset = () => {
+    dispatch(pageChange({ page: 1 }))
+  }
 
   return (
     <Navbar expand="lg" sticky="top" bg="white">
@@ -42,39 +41,46 @@ const handlePageReset = () => {
         {/* Navbar Menu */}
         <div className="d-none d-lg-block">
           <Nav className="ms-auto my-2 my-lg-0">
-            
             {user.data.id ? (
               <>
-              <Nav.Link>
-              <Link className={styles.menu} to="/">
-                Home
-              </Link>
-            </Nav.Link>
-            <Nav.Link to="/recruiters">
-              <Link className={styles.menu} to="/recruiters" onClick={()=>handlePageReset()}>
-                Reclutadores
-              </Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link className={styles.menu} to="/searchs" onClick={()=>handlePageReset()}>
-                Búsquedas
-              </Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link className={styles.menu} to="/reports">
-                Reportes
-              </Link>
-            </Nav.Link>
-              <Nav className="me-auto">
                 <Nav.Link>
-                  <Link className={styles.menu} onClick={handleLogOut} to="/">
-                    Cerrar Sesión
+                  <Link className={styles.menu} to="/">
+                    Home
                   </Link>
                 </Nav.Link>
-                <NavItem className={styles.welcomeName}>
-                  Bienvenido {`${user.data.firstName} ${user.data.surname}`}
-                </NavItem>
-              </Nav>
+                <Nav.Link to="/recruiters">
+                  <Link
+                    className={styles.menu}
+                    to="/recruiters"
+                    onClick={() => handlePageReset()}
+                  >
+                    Reclutadores
+                  </Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link
+                    className={styles.menu}
+                    to="/searchs"
+                    onClick={() => handlePageReset()}
+                  >
+                    Búsquedas
+                  </Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link className={styles.menu} to="/reports">
+                    Reportes
+                  </Link>
+                </Nav.Link>
+                <Nav className="me-auto">
+                  <Nav.Link>
+                    <Link className={styles.menu} onClick={handleLogOut} to="/">
+                      Cerrar Sesión
+                    </Link>
+                  </Nav.Link>
+                  <NavItem className={styles.welcomeName}>
+                    Bienvenido {`${user.data.firstName} ${user.data.surname}`}
+                  </NavItem>
+                </Nav>
               </>
             ) : (
               <Nav className="me-auto">
@@ -110,30 +116,30 @@ const handlePageReset = () => {
               <NavDropdown.Divider className={styles.divider} />
               {user.data.id ? (
                 <Nav>
-                    <Nav.Link>
-                <Link className={styles.linkOffCanvas} to="/">
-                  Home
-                </Link>
-              </Nav.Link>
-              <NavDropdown.Divider className={styles.divider} />
-              <Nav.Link to="/recruiters">
-                <Link className={styles.linkOffCanvas} to="/recruiters">
-                  Reclutadores
-                </Link>
-              </Nav.Link>
-              <NavDropdown.Divider className={styles.divider} />
-              <Nav.Link>
-                <Link className={styles.linkOffCanvas} to="/searchs">
-                  Búsquedas
-                </Link>
-              </Nav.Link>
-              <NavDropdown.Divider className={styles.divider} />
-              <Nav.Link>
-                <Link className={styles.linkOffCanvas} to="/reports">
-                  Reportes
-                </Link>
-              </Nav.Link>
-                    <NavDropdown.Divider className={styles.divider} />
+                  <Nav.Link>
+                    <Link className={styles.linkOffCanvas} to="/">
+                      Home
+                    </Link>
+                  </Nav.Link>
+                  <NavDropdown.Divider className={styles.divider} />
+                  <Nav.Link to="/recruiters">
+                    <Link className={styles.linkOffCanvas} to="/recruiters">
+                      Reclutadores
+                    </Link>
+                  </Nav.Link>
+                  <NavDropdown.Divider className={styles.divider} />
+                  <Nav.Link>
+                    <Link className={styles.linkOffCanvas} to="/searchs">
+                      Búsquedas
+                    </Link>
+                  </Nav.Link>
+                  <NavDropdown.Divider className={styles.divider} />
+                  <Nav.Link>
+                    <Link className={styles.linkOffCanvas} to="/reports">
+                      Reportes
+                    </Link>
+                  </Nav.Link>
+                  <NavDropdown.Divider className={styles.divider} />
                   <Nav.Link>
                     <Link
                       className={styles.linkOffCanvas}
@@ -168,7 +174,7 @@ const handlePageReset = () => {
         </Navbar.Offcanvas>
       </Container>
     </Navbar>
-  );
-};
+  )
+}
 
-export default NavbarComp;
+export default NavbarComp

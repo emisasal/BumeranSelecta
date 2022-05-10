@@ -27,14 +27,13 @@ exports.getAll = (req, res) => {
   const initialLimit = 20
   const cut = page >= 2 ? initialLimit * page - initialLimit : 0
   const getPagingData = (recruiter, page, limit) => {
-    const { count: totalItems, rows: filas } = recruiter;
-    const currentPage = page ? +page : 0;
-    const totalPages = Math.ceil(totalItems / limit);
-    return { totalItems, filas, totalPages, currentPage };
+    const { count: totalItems, rows: filas } = recruiter
+    const currentPage = page ? +page : 0
+    const totalPages = Math.ceil(totalItems / limit)
+    return { totalItems, filas, totalPages, currentPage }
   }
   try {
     Recruiter.findAndCountAll({
-      // include: Searchs,
       order: [["Id", "DESC"]],
       limit: initialLimit,
       offset: cut,

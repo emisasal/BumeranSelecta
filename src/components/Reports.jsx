@@ -1,31 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { Dropdown } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { getRecruitersPerArea, topRecruiters } from "../store/reports";
-import "../assets/styles/Reports.scss";
-// import { useSelector } from "react-redux";
-import Progress from "../commons/Progress";
+import React, { useState, useEffect } from "react"
+import { Dropdown } from "react-bootstrap"
+import { useDispatch } from "react-redux"
+import { getRecruitersPerArea, topRecruiters } from "../store/reports"
+import "../assets/styles/Reports.scss"
+import Progress from "../commons/Progress"
 import Carousel from "../Pages/Carousel"
 
 const Reports = () => {
-  const dispatch = useDispatch();
-  //const report = useSelector((state) => state.reports.data);
-  const [areaValue, setAreaValue] = useState("todas");
-  const [country, setCountry] = useState("todos");
+  const dispatch = useDispatch()
+  const [areaValue, setAreaValue] = useState("todas")
+  const [country, setCountry] = useState("todos")
   const [reports, setReports] = useState()
 
   useEffect(() => {
-    dispatch(getRecruitersPerArea({ areaValue: areaValue, country: country })).then(res => setReports(res.payload));
-  }, [areaValue, country]);
+    dispatch(
+      getRecruitersPerArea({ areaValue: areaValue, country: country })
+    ).then(res => setReports(res.payload))
+  }, [areaValue, country])
 
   useEffect(() => {
-    dispatch(topRecruiters()).then(res => setReports(res.payload));
-  }, []);
+    dispatch(topRecruiters()).then(res => setReports(res.payload))
+  }, [])
 
-  if (!areaValue) return <h1 className="footerBotton">No Data</h1>;
+  if (!areaValue) return <h1 className="footerBotton">No Data</h1>
 
   return (
-
     <>
       <Carousel />
       <div className={`container-fluid`}>
@@ -107,34 +106,34 @@ const Reports = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="w-50 carlAcutis">
-                <Dropdown.Item onClick={(e) => setCountry("todos")}>
+                <Dropdown.Item onClick={e => setCountry("todos")}>
                   Todos
                 </Dropdown.Item>
-                <Dropdown.Item onClick={(e) => setCountry("Argentina")}>
+                <Dropdown.Item onClick={e => setCountry("Argentina")}>
                   Argentina
                 </Dropdown.Item>
-                <Dropdown.Item onClick={(e) => setCountry("Chile")}>
+                <Dropdown.Item onClick={e => setCountry("Chile")}>
                   Chile
                 </Dropdown.Item>
-                <Dropdown.Item onClick={(e) => setCountry("Colombia")}>
+                <Dropdown.Item onClick={e => setCountry("Colombia")}>
                   Colombia
                 </Dropdown.Item>
-                <Dropdown.Item onClick={(e) => setCountry("Ecuador")}>
+                <Dropdown.Item onClick={e => setCountry("Ecuador")}>
                   Ecuador
                 </Dropdown.Item>
-                <Dropdown.Item onClick={(e) => setCountry("Colombia")}>
+                <Dropdown.Item onClick={e => setCountry("Colombia")}>
                   Colombia
                 </Dropdown.Item>
-                <Dropdown.Item onClick={(e) => setCountry("México")}>
+                <Dropdown.Item onClick={e => setCountry("México")}>
                   México
                 </Dropdown.Item>
-                <Dropdown.Item onClick={(e) => setCountry("Panamá")}>
+                <Dropdown.Item onClick={e => setCountry("Panamá")}>
                   Panamá
                 </Dropdown.Item>
-                <Dropdown.Item onClick={(e) => setCountry("Perú")}>
+                <Dropdown.Item onClick={e => setCountry("Perú")}>
                   Perú
                 </Dropdown.Item>
-                <Dropdown.Item onClick={(e) => setCountry("Uruguay")}>
+                <Dropdown.Item onClick={e => setCountry("Uruguay")}>
                   Uruguay
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -144,8 +143,8 @@ const Reports = () => {
       </div>
 
       {/* Tabla */}
-      {reports ?
-        (<div className="container-fluid pt-lg-4  pe-md-3 footerBotton">
+      {reports ? (
+        <div className="container-fluid pt-lg-4  pe-md-3 footerBotton">
           <div className="row text-center sticky-top bg-light border-bottom border-2 border-dark py-3">
             <div className="col-2 col-md-1 col-lg-1 text-start">
               <strong>#</strong>
@@ -191,12 +190,12 @@ const Reports = () => {
                   <Progress ranking={recruiter.rating} />
                 </div>
               </div>
-            );
+            )
           })}
         </div>
-        ) : null}
+      ) : null}
     </>
-  );
-};
+  )
+}
 
-export default Reports;
+export default Reports

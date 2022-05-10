@@ -1,6 +1,5 @@
 import "../assets/styles/Footer.scss";
-import { FaLinkedinIn } from "react-icons/fa";
-import { FaArrowUp } from "react-icons/fa";
+import { FaLinkedinIn, FaArrowUp } from "react-icons/fa";
 
 const Footer = () => {
   return (

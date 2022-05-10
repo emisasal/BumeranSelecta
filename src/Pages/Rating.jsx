@@ -1,50 +1,46 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
-import { useParams } from "react-router";
-import { FaStar } from "react-icons/fa";
-import Row from "react-bootstrap/Row";
-import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
-import Overlay from "react-bootstrap/Overlay";
-import Popover from "react-bootstrap/Popover";
-import styles from "../assets/styles/Rating.module.scss";
-import { getSingleSearch, endSearch } from "../store/searchs";
-import { getSingleRecruiter } from "../store/recruiters";
-import useInput from "../hooks/useInput";
-import { pageChange } from "../store/page";
-import { closeSearch } from "../utils/alerts";
+import React, { useState, useEffect, useRef } from "react"
+import { useDispatch } from "react-redux"
+import { useNavigate, Link } from "react-router-dom"
+import { useParams } from "react-router"
+import { FaStar } from "react-icons/fa"
+import { Button, Row, Form, Overlay, Popover } from "react-bootstrap"
+import styles from "../assets/styles/Rating.module.scss"
+import { getSingleSearch, endSearch } from "../store/searchs"
+import { getSingleRecruiter } from "../store/recruiters"
+import useInput from "../hooks/useInput"
+import { pageChange } from "../store/page"
+import { closeSearch } from "../utils/alerts"
 
 const Rating = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const { id } = useParams();
-  const end_date = useInput();
-  const commentary = useInput();
-  const [rating, setRating] = useState(null);
-  const [hover, setHover] = useState(null);
-  const [search, setSearch] = useState();
-  const [recruiter, setRecruiter] = useState();
-  const [validation, setValidation] = useState(true);
-  const [validationRating, setValidationRating] = useState(false);
-  const finalizar = useRef();
+  const { id } = useParams()
+  const end_date = useInput()
+  const commentary = useInput()
+  const [rating, setRating] = useState(null)
+  const [hover, setHover] = useState(null)
+  const [search, setSearch] = useState()
+  const [recruiter, setRecruiter] = useState()
+  const [validation, setValidation] = useState(true)
+  const [validationRating, setValidationRating] = useState(false)
+  const finalizar = useRef()
 
   useEffect(() => {
-    dispatch(getSingleSearch(id)).then((sear) => {
-      setSearch(sear.payload);
-      return dispatch(getSingleRecruiter(sear.payload.recruiterId)).then(
-        (rec) => setRecruiter(rec.payload)
-      );
-    });
-  }, []);
+    dispatch(getSingleSearch(id)).then(sear => {
+      setSearch(sear.payload)
+      return dispatch(getSingleRecruiter(sear.payload.recruiterId)).then(rec =>
+        setRecruiter(rec.payload)
+      )
+    })
+  }, [])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async e => {
+    e.preventDefault()
     if (!end_date.value || !rating) {
-      if (!end_date.value) setValidation(false);
-      if (!rating) setValidationRating(true);
-      if (rating) setValidationRating(false);
+      if (!end_date.value) setValidation(false)
+      if (!rating) setValidationRating(true)
+      if (rating) setValidationRating(false)
     } else {
       await dispatch(
         endSearch({
@@ -52,16 +48,16 @@ const Rating = () => {
           end_date: end_date.value,
           rating: rating * 2,
           recruiterId: recruiter.id,
-          commentary: commentary.value
+          commentary: commentary.value,
         })
-      );
-      closeSearch();
-      dispatch(pageChange({ page: 1 }));
-      navigate("/searchs");
+      )
+      closeSearch()
+      dispatch(pageChange({ page: 1 }))
+      navigate("/searchs")
     }
-  };
+  }
 
-  if (!recruiter) return <div></div>;
+  if (!recruiter) return <div></div>
 
   return (
     <div className={styles.container}>
@@ -69,7 +65,7 @@ const Rating = () => {
         Por favor, califique al reclutador que realizo esta búsqueda
       </div>
       {[...Array(5)].map((star, i) => {
-        const ratingValue = i + 1;
+        const ratingValue = i + 1
         return (
           <label>
             <input
@@ -87,7 +83,7 @@ const Rating = () => {
               onMouseLeave={() => setHover(null)}
             />
           </label>
-        );
+        )
       })}
 
       <Form
@@ -99,17 +95,18 @@ const Rating = () => {
           Ingrese un comentario en relación al proceso
         </div>
         <div className=" mb-3 fs-5 d-flex justify-content-center">
-        <Form.Group className="col-12 mb-4 col-md-4 " controlId="formGridCity">
-          <Form.Control
-            as="textarea"
-            rows={3}
-            className="inputLogin rounded-pill text-center"
-            {...commentary}
-          />
-              <Form.Text className="text-muted">
-      Opcional
-    </Form.Text>
-        </Form.Group>
+          <Form.Group
+            className="col-12 mb-4 col-md-4 "
+            controlId="formGridCity"
+          >
+            <Form.Control
+              as="textarea"
+              rows={3}
+              className="inputLogin rounded-pill text-center"
+              {...commentary}
+            />
+            <Form.Text className="text-muted">Opcional</Form.Text>
+          </Form.Group>
         </div>
 
         <div className=" mb-3 fs-5 d-flex justify-content-center">
@@ -226,24 +223,24 @@ const Rating = () => {
 
         <div className={styles.btnContainer}>
           <div>
-          <Link to="/searchs">
-            <Button
-              className={`rounded-pill px-5 mt-lg-5 mb-5 ${styles.backBtn}`}
-              type="submit"
-            >
-              Volver
-            </Button>
-          </Link>
+            <Link to="/searchs">
+              <Button
+                className={`rounded-pill px-5 mt-lg-5 mb-5 ${styles.backBtn}`}
+                type="submit"
+              >
+                Volver
+              </Button>
+            </Link>
           </div>
 
-          <div>     
-          <Button
-            ref={finalizar}
-            className={`rounded-pill px-5 mt-lg-5 mb-5 ${styles.confirmBtn}`}
-            type="submit"
-          >
-            Finalizar
-          </Button>
+          <div>
+            <Button
+              ref={finalizar}
+              className={`rounded-pill px-5 mt-lg-5 mb-5 ${styles.confirmBtn}`}
+              type="submit"
+            >
+              Finalizar
+            </Button>
           </div>
         </div>
 
@@ -264,7 +261,7 @@ const Rating = () => {
         </Overlay>
       </Form>
     </div>
-  );
-};
+  )
+}
 
-export default Rating;
+export default Rating
