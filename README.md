@@ -29,3 +29,6 @@ Desarrollado utilizando metodología ágil SCRUM en un grupo de 6 integrantes en
 - MySQL
 - Express
 - NodeJS
+ 
+![BumeranSelecta](https://user-images.githubusercontent.com/94084079/168615266-9c08d3e6-85d8-4be4-920e-4097791da25a.jpg)
+
